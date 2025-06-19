@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grade Evaluator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: auto;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Grade Evaluator</h2>
+  <label for="marks">Enter Marks (0-100):</label>
+  <input type="number" id="marks" placeholder="e.g. 85">
+  <button onclick="evaluateGrade()">Check Grade</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  function evaluateGrade() {
+    const marks = parseInt(document.getElementById("marks").value);
+    const resultDiv = document.getElementById("result");
+
+    if (isNaN(marks) || marks < 0 || marks > 100) {
+      resultDiv.innerHTML = "❌ Please enter a valid number between 0 and 100.";
+      resultDiv.style.color = "red";
+      return;
+    }
+
+    let grade = "";
+    let message = "";
+
+    // Using if-else
+    if (marks >= 90) {
+      grade = "A";
+    } else if (marks >= 75) {
+      grade = "B";
+    } else if (marks >= 60) {
+      grade = "C";
+    } else if (marks >= 40) {
+      grade = "D";
+    } else {
+      grade = "F";
+    }
+
+    // Using switch for message
+    switch (grade) {
+      case "A":
+        message = "Excellent!";
+        break;
+      case "B":
+        message = "Great job!";
+        break;
+      case "C":
+        message = "Good effort.";
+        break;
+      case "D":
+        message = "You passed.";
+        break;
+      case "F":
+        message = "Better luck next time.";
+        break;
+    }
+
+    resultDiv.innerHTML = `✅ Grade: <strong>${grade}</strong><br>💬 Message: ${message}`;
+    resultDiv.style.color = "green";
+  }
+</script>
+
+</body>
+</html>
